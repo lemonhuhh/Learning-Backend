@@ -1,0 +1,23 @@
+:root {
+  --bg: #f7fafd;
+  --surface: #bdddfc;
+  --primary: #88bdf2;
+  --secondary: #6a89a7;
+  --dark: #384959;
+  --border: #d6e8f8;
+}
+.products{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-box{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    border: 1px solid var(--secondary);
+}

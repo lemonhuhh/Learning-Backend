@@ -1,0 +1,82 @@
+@import "tailwindcss";
+.home{
+  background: var(--bg);
+}
+:root {
+  /* Card */
+  --product-card-bg: #ffffff;
+  --product-card-hover: #f5fafe;
+  --product-card-border: #9ed0fc;
+
+  /* Image */
+  --product-image-bg: #eef5fc;
+  --product-image-overlay: rgba(56, 73, 89, 0.15);
+
+  /* Badge / Category */
+  --product-badge-bg: #bdddfc;
+  --product-badge-text: #384959;
+
+  /* Title */
+  --product-title: #384959;
+
+  /* Description */
+  --product-description: #6a89a7;
+
+  /* Price */
+  --product-price: #384959;
+  --product-price-old: #9cb1c3;
+  --product-discount: #3fae7a;
+
+  /* Rating */
+  --product-star: #f5b942;
+  --product-rating-text: #6a89a7;
+
+  /* Stock */
+  --product-stock: #3fae7a;
+  --product-out-stock: #e65c5c;
+
+  /* Buttons */
+  --product-btn-bg: #88bdf2;
+  --product-btn-hover: #384959;
+  --product-btn-text: #ffffff;
+
+  /* Wishlist */
+  --product-heart-bg: #ffffff;
+  --product-heart: #6a89a7;
+  --product-heart-hover: #e65c5c;
+
+  /* Quick View */
+  --product-quick-view-bg: rgba(255, 255, 255, 0.9);
+  --product-quick-view-text: #384959;
+
+  /* Shadow */
+  --product-shadow: 0 8px 20px rgba(56, 73, 89, 0.1);
+  --product-shadow-hover: 0 20px 40px rgba(56, 73, 89, 0.18);
+
+  /* Border Radius */
+  --product-radius: 20px;
+}
+
+.primary-btn {
+  padding: 12px 22px;
+
+  background: var(--product-btn-bg);
+  color: var(--product-btn-text);
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  background: var(--product-btn-hover);
+}
+
+body{
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
