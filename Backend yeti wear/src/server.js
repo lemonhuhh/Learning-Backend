@@ -15,7 +15,7 @@ async function startServer() {
     await connectDB();
     app.listen(env.PORT, () => {
       console.log(`Server is running running on port ${env.PORT}`);
-    });s
+    });
   } catch (error) {
     console.error("Error starting server:" + error);
   }
