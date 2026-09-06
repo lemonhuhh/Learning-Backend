@@ -15,3 +15,25 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello, World!" });
 });
+
+app.get("/api/health", (req, res) => {
+  return res.status(200).json({
+    status: "ok",
+    message: "Server is healthy",
+    uptime: 12345,
+    database: "connected",
+  });
+});
+
+
+app.get("/api/customers", (req, res) =>{
+  return res.status(200) .json({
+    success: "true",
+    customers:[
+      {
+        id:1,
+        
+      }
+    ]
+  })
+} )
