@@ -25,15 +25,24 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-
-app.get("/api/customers", (req, res) =>{
-  return res.status(200) .json({
+app.get("/api/customers", (req, res) => {
+  return res.status(200).json({
     success: "true",
-    customers:[
+    customers: [
       {
-        id:1,
-        
-      }
-    ]
-  })
-} )
+        id: 1,
+        fullName: "Krul Heaven",
+        email: "krul22@gmail.com",
+        phone: 9838574809,
+        address: "Kathmandu, Nepal",
+      },
+      {
+        id: 2,
+        fullName: "Mambik",
+        email: "mambik42@gmail.com",
+        phone: 976336363,
+        address: "Lalitpur, Nepal",
+      },
+    ],
+  });
+});
