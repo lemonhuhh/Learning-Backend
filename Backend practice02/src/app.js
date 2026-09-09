@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import { env } from "./config/env.config.js";
+import { indexRouter } from "./routers/index.js";
+
 export const app = express();
 app.use(
   cors({
@@ -11,3 +13,4 @@ app.use(
 );
 app.use(express.json());
 
+app.use("/api", indexRouter);
