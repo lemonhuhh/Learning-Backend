@@ -1,15 +1,12 @@
 import { Router } from "express";
+import { getProducts } from "../controllers/product.controller.js";
+import { deleteProducts } from "../controllers/product.controller.js";
+import { deleteOneProducts } from "../controllers/product.controller.js";
+import { addProducts } from "../controllers/product.controller.js";
 
 export const productRouter = Router();
 
-productRouter.get("/", (req, res) => {
-  return res.status(200).json({ message: "Products endpoint" });
-});
-
-productRouter.delete("/", (req, res) => {
-  return res.status(200).json({ message: "All products deleted" });
-});
-
-productRouter.delete("/:id", (req, res) => {
-  return res.status(200).json({ message: "Product Delted" });
-});
+productRouter.post("/", addProducts);
+productRouter.get("/", getProducts);
+productRouter.delete("/", deleteProducts);
+productRouter.delete("/:id", deleteOneProducts);
