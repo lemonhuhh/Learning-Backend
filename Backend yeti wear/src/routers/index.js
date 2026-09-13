@@ -9,5 +9,4 @@ export const indexRouter = Router();
 indexRouter.use("/customers", customerRouter);
 indexRouter.use("/products", productRouter);
 indexRouter.use("/auth", authRouter);
-indexRouter.use("/contact", contact)
-
+indexRouter.use("/contact", contact);

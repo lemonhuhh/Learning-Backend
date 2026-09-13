@@ -14,11 +14,21 @@ export async function getProducts(req, res) {
 }
 
 export async function deleteProducts(req, res) {
-  return res.status(200).json({ message: "All products deleted" });
+  const product = await Product.deleteMany({});
+  return res.status(200).json({
+    status: "success",
+    message: "All products deleted",
+  });
 }
 
 export async function deleteOneProducts(req, res) {
-  return res.status(200).json({ message: "Deleted this product" });
+  const { id } = req.params;
+  const product = await Product.findByIdAndDelete(id);
+  return res.status(200).json({
+    status: "success",
+    message: "This product has been deleted",
+    product,
+  });
 }
 
 export async function addProducts(req, res) {
