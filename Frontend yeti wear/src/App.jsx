@@ -13,6 +13,7 @@ import AdminUser from "./pages/adminpages/AdminUser";
 import AdminProduct from "./pages/adminpages/AdminProduct";
 import ProductDetails from "./product/ProductDetails";
 import Mycart from "./cart/Mycart";
+import AddProducts from "./pages/adminpages/AddProducts";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -57,6 +58,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="addproducts"
+            element={
+              <ProtectedRoute>
+                <AddProducts />
               </ProtectedRoute>
             }
           />

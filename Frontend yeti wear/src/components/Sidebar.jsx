@@ -10,10 +10,13 @@ function Sidebar() {
       to: "/admin/user",
     },
     {
-        name:"Products",
-        to: "/admin/products"
+      name: "Products",
+      to: "/admin/products",
     },
-
+    {
+      name: "Add Products",
+      to: "/admin/addproducts",
+    },
   ];
 
   return (
@@ -27,11 +30,9 @@ function Sidebar() {
               className="cursor-pointer p-6 text-[#CBD5E1] font-serif hover:bg-[#164E63] hover:text-[#67E8F9]"
             >
               {l.name}
-              
             </li>
           ))}
         </div>
-        
       </div>
     </>
   );
