@@ -9,7 +9,7 @@ function AdminLayout() {
     <AdminHeader/>
       <div className="flex min-h-screen bg-slate-50">
         <Sidebar />
-        <main className="flex-1 p-5">
+        <main className="flex-1 ">
           <Outlet />
         </main>
       </div>
