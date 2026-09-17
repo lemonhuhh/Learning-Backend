@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import API_URL from "../../api/api";
+
 function AddProducts() {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
@@ -81,7 +82,7 @@ function AddProducts() {
         {/* Submit */}
         <button
           type="submit"
-          className="rounded-lg bg-[#5CC8FF] px-6 py-3 font-medium text-[#0A0F18] transition hover:bg-[#8B9CFF]"
+          className="rounded-lg cursor-pointer bg-[#5CC8FF] px-6 py-3 font-medium text-[#0A0F18] transition hover:bg-[#8B9CFF]"
         >
           Add Product
         </button>

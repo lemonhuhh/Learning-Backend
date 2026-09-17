@@ -13,6 +13,7 @@ const productSchema = new mongoose.Schema(
     productPrice: {
       type: Number,
       required: true,
+      default: 0,
     },
   },
   { timestamps: true },
