@@ -1,11 +1,19 @@
 import { Auth } from "../models/auth.model.js";
 
 export async function handleLogin(req, res) {
+  const auth = await Auth.findOne(req.body);
   return res.status(200).json({ message: "Login successful" });
 }
 
 export async function handleSignup(req, res) {
-  const auth = await Auth.create(req.body);
+  const auth = await Auth.create({
+    name,
+    email,
+    password,
+    confirmPassword,
+    phone,
+    address,
+  });
   return res.status(200).json({
     status: "success",
     message: "Account successfully created",
@@ -19,6 +27,15 @@ export async function deleteAccount(req, res) {
   return res.status(200).json({
     status: "success",
     message: "Your account has been deleted",
+    account,
+  });
+}
+
+export async function fetchAccounts(req, res) {
+  const account = await Auth.find();
+  return res.status(200).json({
+    status: "success",
+    message: "Account fetched successfully",
     account,
   });
 }

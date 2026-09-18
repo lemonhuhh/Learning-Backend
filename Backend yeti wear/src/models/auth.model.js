@@ -1,27 +1,37 @@
 import mongoose from "mongoose";
 
-const authSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const authSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    confirmPassword: {
+      type: String,
+    },
+    phone: {
+      type: Number,
+    },
+    address: {
+      type: String,
+    },
+    role: {
+      type: String,
+      enum: ["USER", "ADMIN"],
+      default: "USER",
+    },
   },
-  email: {
-    type: String,
-    required: true,
+  {
+    timestamps: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  confirmPassword: {
-    type: String,
-  },
-  phone: {
-    type: Number,
-  },
-  address: {
-    type: String,
-  },
-});
+);
 
 export const Auth = mongoose.model("Auth", authSchema);
