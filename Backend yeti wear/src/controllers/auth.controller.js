@@ -1,8 +1,31 @@
 import { Auth } from "../models/auth.model.js";
+import { validateSignup, validateLogin } from "../validators/auth.validator.js";
+import bcrypt from "bcrypt";
 
 export async function handleLogin(req, res) {
+  try {
+    const { name, email, password, address, phone } = req.body;
+
+    //User validation
+    const validateError = validateLogin({
+      name,
+      password,
+      email,
+      phone,
+      address,
+    });
+
+    if (validateError) {
+      return res.status(400).json({
+        status: "failed",
+        success: false,
+        message: "Validation error!",
+      });
+    }
+  } catch (errror) {
+    console.log("Login error", error);
+  }
   const auth = await Auth.findOne(req.body);
-  return res.status(200).json({ message: "Login successful" });
 }
 
 export async function handleSignup(req, res) {
