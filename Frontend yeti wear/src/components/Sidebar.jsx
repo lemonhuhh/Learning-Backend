@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -16,6 +16,10 @@ function Sidebar() {
     {
       name: "Add Products",
       to: "/admin/addproducts",
+    },
+    {
+      name: "Hero Slider",
+      to: "/admin/hero",
     },
   ];
 

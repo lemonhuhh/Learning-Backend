@@ -31,6 +31,18 @@ const heroSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    button1Text: {
+      type: String,
+    },
+    button1Link: {
+      type: String,
+    },
+    button2Text: {
+      type: String,
+    },
+    button2Link: {
+      type: String,
+    },
   },
   { timestamps: true },
 );
