@@ -1,89 +1,86 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import API_URL from "../api/api.js";
+import Productcard from "../components/reusable/Productcard.jsx";
 
 function Collection() {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState();
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
+
+  const getProducts = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await axios.get(`${API_URL}/products`);
+
+      setProducts(response.data.products || []);
+    } catch (error) {
+      console.error(error);
+
+      setError(error.response?.data?.message || "Failed to load products.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const productdatas = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(`${API_URL}/products`);
-        setData(response.data.products);
-        setLoading(false);
-        console.log(response.data.products);
-      } catch (error) {
-        setError("Error fetching the data" + error.message);
-        setLoading(false);
-      }
-    };
-    productdatas();
+    getProducts();
   }, []);
 
   if (loading) {
-    return <h1>Loading datas......</h1>;
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <p className="text-lg text-slate-500">Loading products...</p>
+      </div>
+    );
   }
+
   if (error) {
-    return <h1>Error!{error}</h1>;
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <p className="text-red-500">{error}</p>
+      </div>
+    );
   }
 
   return (
-    <>
-      {data &&
-        data.map((product) => (
-          <div key={product.id} className="border-b-blue-950 flex border-2 gap-2 p-2 mask-origin-border">
-            <div className="">
-              <h2>{product.productName}</h2>
-              <p>{product.productDescription}</p>
-              <p>{product.productPrice}</p>
-            </div>
-          </div>
-        ))}
+    <section className="min-h-screen bg-slate-50 px-6 py-12">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mb-10">
+          <p className="text-sm font-semibold uppercase tracking-widest text-cyan-950">
+            Yeti Wear
+          </p>
 
-      {/* <div>{products.map(() => {})}</div>
-      <div>
-        <p>Product no.{count}</p>
-        <p>Rs.{price}</p>
-        <button onClick={handleIncrement} className="primary-btn">
-          +
-        </button>
-        <button onClick={handledecrement} className="primary-btn"></button>
-      </div> */}
-    </>
+          <h1 className="mt-2 text-4xl font-bold text-slate-900">
+            Our Collection
+          </h1>
+
+          <p className="mt-3 max-w-2xl text-slate-500">
+            Explore our latest collection and find something that fits your
+            style.
+          </p>
+        </div>
+
+        {/* Products */}
+        {products.length > 0 ? (
+          <Productcard products={products} />
+        ) : (
+          <div className="rounded-xl border border-slate-200 bg-white p-10 text-center">
+            <h2 className="text-xl font-semibold text-slate-800">
+              No products available
+            </h2>
+
+            <p className="mt-2 text-slate-500">
+              Products will appear here once they are added.
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 
 export default Collection;
-
-// const [products, setProducts] = useState();
-// async function getData() {
-//   try {
-//     const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-//     const data = await res.json();
-//     setProducts(data);
-//   } catch (error) {
-//     console.log("Error fetching the data.");
-//   }
-// }
-// getData();
-
-// const [count, setCount] = useState(0);
-
-// useEffect(() => {
-//   alert("Count is changed " + count);
-//   localStorage.setItem("Count", count);
-// }, [count]);
-
-// const [price, setPrice] = useState(1000);
-// const handleIncrement = () => {
-//   setCount(count + 1);
-
-//   setPrice(price + price);
-// };
-
-// const handledecrement = () => {
-//   setCount(count - 1);
-// };

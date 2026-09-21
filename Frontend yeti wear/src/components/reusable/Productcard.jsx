@@ -1,16 +1,14 @@
-import React from "react";
-import product from "../../data/data";
 import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext.jsx";
 
-function Productcard() {
+function Productcard({ products = [] }) {
   const navigate = useNavigate();
   const { addToCart } = useContext(CartContext);
 
-  const handelAddtocart = (products) => {
-    alert(`${products.name} added to cart.`)
-    addToCart(products);
+  const handleAddToCart = (product) => {
+    alert(`${product.productName} added to cart.`);
+    addToCart(product);
   };
 
   const handleViewDetails = (productName) => {
@@ -18,70 +16,67 @@ function Productcard() {
   };
 
   return (
-    <div className="grid min-h-screen grid-cols-4 items-center justify-center gap-5">
-      {product.map((products) => (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {products.map((product) => (
         <div
-          key={products.id}
-          className="w-77.5 overflow-hidden rounded-2xl bg-white shadow-lg transition hover:shadow-xl"
+          key={product._id}
+          className="overflow-hidden rounded-2xl bg-white shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl"
         >
-          {/* Image Section */}
-          <div className="relative flex h-57.5 items-center justify-center bg-slate-100">
-            <img
-              src={products.image}
-              alt={products.name}
-              className="w-61.25 object-contain rotate-[-8deg]"
-            />
+          {/* Image */}
+          <div className="relative flex h-60 items-center justify-center bg-slate-100">
+            {product.productImage ? (
+              <img
+                src={product.productImage}
+                alt={product.productName}
+                className="h-full w-full object-contain p-6"
+              />
+            ) : (
+              <div className="text-sm text-slate-400">No image available</div>
+            )}
 
-            {/* Heart */}
-            <button className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white text-2xl text-cyan-950 shadow-sm transition hover:bg-cyan-50">
+            {/* Wishlist */}
+            <button
+              type="button"
+              className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white text-2xl text-cyan-950 shadow-sm transition hover:bg-cyan-50"
+            >
               ♡
             </button>
           </div>
 
           {/* Product Details */}
-          <div className="px-4 py-3">
+          <div className="p-4">
             <h2 className="text-xl font-bold text-slate-800">
-              {products.name}
+              {product.productName}
             </h2>
 
-            {/* Tags */}
-            <div className="mt-2 flex gap-2">
-              <span className="rounded border border-slate-300 px-2 py-1 text-xs text-slate-600">
-                EU38
-              </span>
-
-              <span className="rounded border border-slate-300 px-2 py-1 text-xs text-slate-600">
-                BLACK/WHITE
-              </span>
-            </div>
-
             {/* Description */}
-            <p className="mt-3 text-sm leading-6 text-slate-500">
-              {products.description}
+            <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-500">
+              {product.productDescription}
             </p>
 
-            {/* Price + Button */}
-            <div className="mt-6 flex items-end justify-between gap-2">
-              <div>
-                <p className="text-[10px] font-bold tracking-widest text-slate-400">
-                  PRICE
-                </p>
+            {/* Price */}
+            <div className="mt-4">
+              <p className="text-[10px] font-bold tracking-widest text-slate-400">
+                PRICE
+              </p>
 
-                <p className="text-xl font-bold text-slate-800">
-                  ${products.price}
-                </p>
-              </div>
+              <p className="text-xl font-bold text-slate-800">
+                Rs. {product.productPrice}
+              </p>
+            </div>
 
+            {/* Buttons */}
+            <div className="mt-5 flex flex-col gap-2">
               <button
-                onClick={() => handelAddtocart(products)}
-                className="h-10 w-40 cursor-pointer rounded-md bg-cyan-950 text-sm font-semibold text-white transition hover:bg-cyan-900"
+                onClick={() => handleAddToCart(product)}
+                className="h-10 w-full cursor-pointer rounded-md bg-cyan-950 text-sm font-semibold text-white transition hover:bg-cyan-900"
               >
-                Add to cart
+                Add to Cart
               </button>
 
               <button
-                onClick={() => handleViewDetails(products.name)}
-                className="h-10 w-40 cursor-pointer rounded-md border border-cyan-950 text-sm font-semibold text-cyan-950 transition hover:bg-cyan-950 hover:text-white"
+                onClick={() => handleViewDetails(product.productName)}
+                className="h-10 w-full cursor-pointer rounded-md border border-cyan-950 text-sm font-semibold text-cyan-950 transition hover:bg-cyan-950 hover:text-white"
               >
                 View Details
               </button>
