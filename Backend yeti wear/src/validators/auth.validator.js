@@ -11,10 +11,6 @@ export const validateSignup = ({ name, email, address, password, phone }) => {
     return "Please enter a valid email";
   }
 
-  if (phone.trim().length < 10) {
-    return "Please enter a valid phone number";
-  }
-
   if (password.length < 6) {
     return "Password must be at least 6 characters";
   }
