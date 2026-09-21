@@ -167,21 +167,21 @@ export async function deleteAccount(req, res) {
   }
 }
 
-export async function fetchAccounts(req, res) {
+export async function getAllUsers(req, res) {
   try {
-    const account = await Auth.find();
+    const users = await Auth.find().select("-password");
 
     return res.status(200).json({
       status: "success",
-      message: "Account fetched successfully",
-      account,
+      users,
     });
   } catch (error) {
-    console.log("Fetch Accounts Error:", error);
+    console.log(error);
 
     return res.status(500).json({
-      success: false,
-      message: "Failed to fetch accounts",
+      status: "error",
+      message: "Failed to fetch users",
     });
   }
 }
+
