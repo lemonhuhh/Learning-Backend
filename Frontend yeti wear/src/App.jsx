@@ -29,7 +29,6 @@ function App() {
           <Route path="/collection" element={<Collection />} />
           <Route path="/oder" element={<Oder />} />
           <Route path="/product/:name" element={<ProductDetails />} />
-          <Route path="/mycart" element={<Mycart />} />
         </Route>
 
         {/* Fot Dashboard */}
@@ -78,6 +77,23 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/mycart"
+            element={
+              <ProtectedRoute>
+                <Mycart />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+        
+        <Route path="/user" element={<Layouts />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/oder" element={<Oder />} />
+          <Route path="/product/:name" element={<ProductDetails />} />
         </Route>
       </Routes>
     </>

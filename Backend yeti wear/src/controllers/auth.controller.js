@@ -185,3 +185,61 @@ export async function getAllUsers(req, res) {
   }
 }
 
+//Create admin account
+// Create admin account
+export async function createAdmin(req, res) {
+  try {
+    const { name, email, phone, address, password } = req.body;
+
+    // Check required fields
+    if (!name || !email || !phone || !address || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
+    // Check if email already exists
+    const existingUser = await Auth.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User with this email already exists",
+      });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create admin
+    const admin = await Auth.create({
+      name,
+      email,
+      phone,
+      address,
+      password: hashedPassword,
+      role: "ADMIN",
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Admin successfully created",
+      user: {
+        id: admin._id,
+        name: admin.name,
+        email: admin.email,
+        phone: admin.phone,
+        address: admin.address,
+        role: admin.role,
+      },
+    });
+  } catch (error) {
+    console.log("Create Admin Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Error creating admin account",
+    });
+  }
+}

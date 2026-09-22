@@ -35,7 +35,8 @@ function Header() {
   };
 
   const handleCart = () => {
-    navigate(`/mycart`);
+    alert("Please login to view your cart.");
+    navigate(`/user/mycart`);
   };
 
   return (
