@@ -13,6 +13,8 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
@@ -29,3 +31,4 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api", indexRouter);
+app.use("/uploads", express.static("uploads"));

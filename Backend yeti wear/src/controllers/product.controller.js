@@ -40,6 +40,6 @@ export async function addProducts(req, res) {
       products,
     });
   } catch (error) {
-    return res.status(200).json({ message: "Error creating product" });
+    return res.status(400).json({ message: "Error creating product" });
   }
 }
