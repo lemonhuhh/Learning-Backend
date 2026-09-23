@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
-import Productcard from "../components/reusable/Productcard";
+import Productcard from "../components/reusable/Productcard.jsx";
 import axios from "axios";
 import API_URL from "../api/api.js";
 
 function Home() {
+  const [products, setProducts] = useState([]);
   const [heroes, setHeroes] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/products`);
+        setProducts(res.data.products);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      }
+    };
+
     const getHeroes = async () => {
       try {
         const response = await axios.get(`${API_URL}/hero`);
@@ -17,6 +27,7 @@ function Home() {
       }
     };
 
+    getProducts();
     getHeroes();
   }, []);
 
@@ -104,13 +115,40 @@ function Home() {
         </div>
       </section>
 
-      <div>
-        <h1 className="text-(--product-title)">Our products</h1>
-      </div>
+      <section className="py-20 px-5 md:px-10 lg:px-16 bg-white">
+        {/* Section Header */}
+        <div className="max-w-7xl mx-auto mb-12">
+          <div className="flex flex-col items-center text-center">
+            {/* Small Label */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-10 h-px bg-[#184a7c]"></span>
 
-      <div>
-        <Productcard />
-      </div>
+              <span className="text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-[#4e91d4]">
+                Yeti Wear
+              </span>
+
+              <span className="w-10 h-px bg-[#184a7c]"></span>
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#184a7c]">
+              Our Products
+            </h2>
+
+            {/* Description */}
+            <p className="max-w-2xl mt-4 text-sm md:text-base leading-7 text-[#687789]">
+              Discover our latest collection of carefully selected pieces,
+              designed to bring comfort, style, and confidence to your everyday
+              look.
+            </p>
+          </div>
+        </div>
+
+        {/* Products */}
+        <div className="max-w-7xl mx-auto">
+          <Productcard products={products} />
+        </div>
+      </section>
     </div>
   );
 }

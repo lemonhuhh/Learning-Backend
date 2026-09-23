@@ -37,7 +37,12 @@ function Login() {
         password: "",
       });
 
-      navigate("/admin");
+      // Role based navigation
+      if (response.data.user.role === "USER") {
+        navigate("/user");
+      } else {
+        navigate("/admin");
+      }
     } catch (error) {
       console.error("Login error:", error);
 

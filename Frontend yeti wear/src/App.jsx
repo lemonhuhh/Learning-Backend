@@ -15,8 +15,11 @@ import ProductDetails from "./product/ProductDetails";
 import Mycart from "./cart/Mycart";
 import AddProducts from "./pages/adminpages/AddProducts";
 import Heroslider from "./pages/adminpages/Heroslider";
+import UserDashboardLayout from "./layout/UserDashboardLayout";
+
 
 import { Routes, Route } from "react-router-dom";
+import UserDashboard from "./pages/user/UserDashboard";
 
 function App() {
   return (
@@ -77,24 +80,13 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/mycart"
-            element={
-              <ProtectedRoute>
-                <Mycart />
-              </ProtectedRoute>
-            }
-          />
         </Route>
+
         
-        <Route path="/user" element={<Layouts />}>
-          <Route index element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/collection" element={<Collection />} />
-          <Route path="/oder" element={<Oder />} />
-          <Route path="/product/:name" element={<ProductDetails />} />
-        </Route>
+          <Route path="/user" element={<UserDashboardLayout />}>
+            <Route index element={<UserDashboard />} />
+          </Route>
+        
       </Routes>
     </>
   );
